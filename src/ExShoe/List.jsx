@@ -1,19 +1,22 @@
 import React from 'react'
+import Item from './Item'
 
-export default function List(listShoe) {
+export default function List({ listShoe, handleRemoveFromList, handleAddToCart }) {
     console.log("🚀 [ List [ props:", listShoe)
-    let { dataShoe } = listShoe
     let renderList = () => {
-        return dataShoe.map((eachShoe, index) => {
+        return listShoe.map((eachShoe) => {
             return (
-                <div className="col-3" key={index}>
-                    <img src={eachShoe.image} className="w-100" />
-                    <p>{eachShoe.name}</p>
-                    <button className="btn btn-dark">Add To Cart</button>
-                </div>)
+                <Item
+                    key={eachShoe.id}
+                    handleRemoveFromList={handleRemoveFromList}
+                    handleAddToCart={handleAddToCart}
+                    eachShoe={eachShoe}
+                />)
+
         })
     }
     return (
         <div className="row col-5">{renderList()}</div>
+        // <div><a href="#a">a</a></div>
     )
 }
